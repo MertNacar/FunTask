@@ -13,7 +13,7 @@ import * as uti from '../utils/Utils'
 
 export default class Candidate extends Component {
   GetData(){
-    Geocoder.init('AIzaSyA32vMSQJGtyX441HNZGDG__Dt5X3s7F7U'); 
+    Geocoder.init('API KEY HERE and Androidmanifest.xml Api key need'); 
 
     Geocoder.from(41.89, 12.49)
 		.then(json => {
