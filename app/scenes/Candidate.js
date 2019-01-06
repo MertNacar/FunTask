@@ -13,7 +13,7 @@ import * as uti from '../utils/Utils'
 
 export default class Candidate extends Component {
   GetData(){
-    Geocoder.init('API KEY HERE and Androidmanifest.xml Api key need'); 
+    Geocoder.init('API_KEY'); 
 
     Geocoder.from(41.89, 12.49)
 		.then(json => {
@@ -47,18 +47,20 @@ export default class Candidate extends Component {
     };
   }
  
-  _onPress() {
-    uti.FetchData(con.HOST_URL.GET_URL+"ID").then(res => {
-      AsyncStorage.getItem("fullName")
-      this.setState({
-        fullName : res.candidate.fullName
-      })
+componentWillMount(){
+  uti.FetchData(con.HOST_URL.GET_URL+this.props.token+"/").then(res => {
+    this.setState({
+      token : res.candidate.candidateId,
+      fullName : res.candidate.candidateName
     })
+  })
+}
+
+  _onPress() {   
     Alert.alert(
       'My Informations',
-      this.props.token,
-      this.state.fullName
-    
+      'Id: '+ this.state.token + '\n' +
+      'Name: ' + this.state.fullName  
     )
   }
   
